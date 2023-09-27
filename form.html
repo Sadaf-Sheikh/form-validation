@@ -1,0 +1,144 @@
+<html></!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="col-lg-8 m-auto mt-3 d-block">
+		<form action="#"  onsubmit="return validation()" class="bg-light">
+			<div class="form-group">
+				<label class="m-2">Username:</label>
+				<input type="text" name="user" id="user" class="form-control" autocomplete="off">
+				<span id="Username" class="text-danger font-weight-bold"></span>
+			</div>
+			<div class="form-group">
+				<label class="m-2">Password:</label>
+				<input type="text" name="pass" id="pass" class="form-control" autocomplete="off">
+				<span id="passwords" class="text-danger font-weight-bold"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="m-2">Confirm-Password:</label>
+				<input type="text" name="conpass" id="conpass" class="form-control" autocomplete="off">
+				<span id="confirmpass" class="text-danger font-weight-bold"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="m-2">Mobile No:</label>
+				<input type="text" name="mobile" id="mobilenumber" class="form-control" autocomplete="off">
+				<span id="mobileno" class="text-danger font-weight-bold"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="m-2">Email:</label>
+				<input type="text" name="email" id="emails" class="form-control" autocomplete="off">
+				<span id="emailids" class="text-danger font-weight-bold"></span>
+			</div></br>
+
+			<input type="submit" name="submit" value="submit" class="btn btn-success" autocomplete="off">
+		</form>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function validation(){
+			var user=document.getElementById("user").value;
+			var pass=document.getElementById("pass").value;
+			var confirmpass=document.getElementById("conpass").value;
+			var mobilenumber=document.getElementById("mobilenumber").value;
+			var emails=document.getElementById("emails").value;
+			var validEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+//user-field//
+			if (user=="") {
+					document.getElementById("Username").innerHTML="** Please fill the username field";
+					return false;
+			}
+			if ((user.length <= 2)  ||  (user.length > 20)) {
+					document.getElementById("Username").innerHTML="** User length must be between 2 & 20";
+					return false;
+			}
+			if (!isNaN(user)) {
+					document.getElementById("Username").innerHTML="** only character are alllowed";
+					return false;
+			}
+
+
+
+
+//password-field//
+			if (pass=="") {
+					document.getElementById("passwords").innerHTML="** Please fill the password field";
+					return false;
+			}
+			if ((pass.length <= 5)  ||  (pass.length > 20)) {
+					document.getElementById("passwords").innerHTML="** Password length must be between 5 & 20";
+					return false;
+			}
+			if (pass!= confirmpass) {
+				document.getElementById("passwords").innerHTML="** password are not matching";
+					return false;
+			}
+
+
+			if (conpass=="") {
+					document.getElementById("confirmpass").innerHTML="** Please fill the confirmpassword field";
+					return false;
+			}
+			
+//mobileno
+			if (mobilenumber=="") {
+					document.getElementById("mobileno").innerHTML="** Please fill the mobile field;"
+					return false;
+			}
+			if (isNaN(mobilenumber)) {
+				document.getElementById("mobileno").innerHTML="**Please Enter only numeric value";
+				return false;
+			}
+			if (mobilenumber.length<10) {
+				document.getElementById("mobileno").innerHTML="** Mobile no must be 10 digits";
+				return false;
+			}
+			
+			if (mobilenumber.length>10) {
+				document.getElementById("mobileno").innerHTML="** Mobile no must be 10 digits";
+				return false;
+			}
+			if ((mobilenumber.charAt(0)!=9) && (mobilenumber.charAt(0)!=8) && (mobilenumber.charAt(0)!=7)){
+				document.getElementById("mobileno").innerHTML="** Mobile no must be start with 9,8,7";
+				return false;
+			}	
+
+
+//emails
+			if (emails=="") {
+					document.getElementById("emailids").innerHTML="** Please fill the email address";
+					return false;
+			}
+
+			
+			if (validEmail.test(emails)==false) {
+				document.getElementById("emailids").innerHTML="** Please enter the valid email address";
+					return false;
+			}
+			if (emails.indexOf('@') <= 0) {
+				document.getElementById("emailids").innerHTML="** @ at invalid position";
+					return false;
+			}
+			if ((emails.charAt(emails.length-4)!= '.') && (emails.charAt(emails.length-3)!= '.')) {
+				document.getElementById("emailids").innerHTML="** . at invalid position";
+					return false;
+			}
+
+
+		}
+		
+	</script>
+</body>
+</html>
